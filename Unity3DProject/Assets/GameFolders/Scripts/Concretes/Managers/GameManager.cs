@@ -16,6 +16,8 @@ public class GameManager : SinglationThisObject<GameManager>
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
+
         OnGameOver?.Invoke();
     }
 
