@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] float moveBoundary = 4.5f;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpForce = 300f;    
 
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     float horizontal;
     bool isJump;
+
+    public float MoveSpeed => moveSpeed;
+    public float MoveBoundary => moveBoundary;
 
     private void Awake()
     {
@@ -31,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        horizontalMover.TickFixed(horizontal, moveSpeed);
+        horizontalMover.TickFixed(horizontal);
 
         if (isJump)
         {
