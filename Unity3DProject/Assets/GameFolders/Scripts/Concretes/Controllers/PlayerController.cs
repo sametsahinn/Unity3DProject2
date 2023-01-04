@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     float horizontal;
     bool isJump;
+    bool isDead = false;
 
     public float MoveSpeed => moveSpeed;
     public float MoveBoundary => moveBoundary;
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isDead) return;
         horizontal = input.Horizontal;
 
         if (input.Jump) isJump = true;
@@ -42,5 +44,16 @@ public class PlayerController : MonoBehaviour
             jump.TickFixed(jumpForce);            
         }
         isJump = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        EnemyController enemyController = other.GetComponent<EnemyController>();
+
+        if (enemyController != null)
+        {
+            isDead = true;
+            GameManager.Instance.GameOver();            
+        }
     }
 }
