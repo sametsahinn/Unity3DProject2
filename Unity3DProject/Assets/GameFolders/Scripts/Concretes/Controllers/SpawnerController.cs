@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-    [SerializeField] EnemyController enemyPreFabs;
 
     [Range(0.1f, 5f)]
     [SerializeField] float min = 0.1f;
@@ -14,7 +13,7 @@ public class SpawnerController : MonoBehaviour
 
     float maxSpawnTime;
 
-    float currentSpawnTime = 0f;
+    float currentSpawnTime = 0f;  
 
     private void OnEnable()
     {
@@ -33,8 +32,11 @@ public class SpawnerController : MonoBehaviour
 
     void Spawn()
     {
-        EnemyController newEnemy = Instantiate(enemyPreFabs, transform.position, transform.rotation);
+
+        EnemyController newEnemy = EnemyManager.Instance.GetPool();
         newEnemy.transform.parent = this.transform;
+        newEnemy.transform.position = transform.transform.position;
+        newEnemy.gameObject.SetActive(true);
 
         currentSpawnTime = 0f;
         GetRandomMaxTime();

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorizontalMover
+public class HorizontalMover : IMover
 {
-    PlayerController playerController;
+    IEntityController playerController;
     float moveSpeed;
     float moveBoundary;
 
-    public HorizontalMover(PlayerController playerController)
+    public HorizontalMover(IEntityController entityController)
     {
-        this.playerController = playerController;
+        this.playerController = entityController;
         this.moveSpeed = playerController.MoveSpeed;
         this.moveBoundary = playerController.MoveBoundary;
     }

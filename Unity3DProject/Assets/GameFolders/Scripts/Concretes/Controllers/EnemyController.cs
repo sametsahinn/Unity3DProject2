@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
-{
-    [SerializeField] float moveSpeed = 10f;
+public class EnemyController : MyCharacterController, IEntityController
+{    
     [SerializeField] float maxLifeTime = 7f;
 
     VerticalMover verticalMover;
     float currentTimeLife = 0f;
-
-    public float MoveSpeed => moveSpeed;
 
     private void Awake()
     {
@@ -35,6 +32,7 @@ public class EnemyController : MonoBehaviour
 
     void KillEnemy()
     {
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
+        EnemyManager.Instance.SetPool(this);
     }
 }

@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MyCharacterController, IEntityController
 {
-    [SerializeField] float moveBoundary = 4.5f;
-    [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpForce = 300f;    
 
-    HorizontalMover horizontalMover;
-    JumpWithRigidbody jump;
+    IMover horizontalMover;
+    IJump jump;
     IInputReader input;
 
     float horizontal;
     bool isJump;
-    bool isDead = false;
-
-    public float MoveSpeed => moveSpeed;
-    public float MoveBoundary => moveBoundary;
+    bool isDead = false;    
 
     private void Awake()
     {
@@ -48,9 +43,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EnemyController enemyController = other.GetComponent<EnemyController>();
+        IEntityController entityController = other.GetComponent<IEntityController>();
 
-        if (enemyController != null)
+        if (entityController != null)
         {
             isDead = true;
             GameManager.Instance.GameOver();            
