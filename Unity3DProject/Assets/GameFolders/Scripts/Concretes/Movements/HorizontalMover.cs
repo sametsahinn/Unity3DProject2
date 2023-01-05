@@ -5,23 +5,19 @@ using UnityEngine;
 public class HorizontalMover : IMover
 {
     IEntityController playerController;
-    float moveSpeed;
-    float moveBoundary;
 
     public HorizontalMover(IEntityController entityController)
     {
         this.playerController = entityController;
-        this.moveSpeed = playerController.MoveSpeed;
-        this.moveBoundary = playerController.MoveBoundary;
     }
 
     public void TickFixed(float horizontal)
     {
         if (horizontal == 0f) return;
 
-        playerController.transform.Translate(Vector3.right * horizontal * Time.deltaTime * moveSpeed);
+        playerController.transform.Translate(Vector3.right * horizontal * Time.deltaTime * playerController.MoveSpeed);
 
-        float xBoundary = Mathf.Clamp(playerController.transform.position.x, -moveBoundary, moveBoundary);
+        float xBoundary = Mathf.Clamp(playerController.transform.position.x, -playerController.MoveBoundary, playerController.MoveBoundary);
         playerController.transform.position = new Vector3(xBoundary, playerController.transform.position.y, 0f);
     }
 }

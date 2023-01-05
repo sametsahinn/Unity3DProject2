@@ -13,6 +13,7 @@ public class EnemyManager : SinglationThisObject<EnemyManager>
     public float AddDelayTime => addDelayTime;
     public float Count => enemyPreFabs.Length;
 
+    float moveSpeed;
 
     private void Awake()
     {
@@ -57,15 +58,28 @@ public class EnemyManager : SinglationThisObject<EnemyManager>
 
         if (enemy.Count == 0)
         {
-            // InitiliazePool();
-
             for (int i = 0; i < 2; i++)
             {
                 EnemyController newEnemy = Instantiate(enemyPreFabs[(int)enemyType]);
+                newEnemy.gameObject.SetActive(false);
                 enemy.Enqueue(newEnemy);
             }            
         }
 
-        return enemy.Dequeue();
+        EnemyController enemyController = enemy.Dequeue();
+        enemyController.SetMoveSpeed(moveSpeed);
+
+
+        return enemyController;
+    }
+
+    public void SetMoveSpeed(float moveSpeed)
+    {
+        this.moveSpeed = moveSpeed;
+    }
+
+    public void SetDelayTime(float delayTime)
+    {
+        this.addDelayTime = delayTime;
     }
 }

@@ -405,6 +405,7 @@
 "Assets/GameFolders/Scripts/Abstracts/Utilities/SinglationThisObject.cs"
 "Assets/GameFolders/Scripts/Concretes/Controllers/EnemyController.cs"
 "Assets/GameFolders/Scripts/Concretes/Controllers/FloorController.cs"
+"Assets/GameFolders/Scripts/Concretes/Controllers/LevelInitializerController.cs"
 "Assets/GameFolders/Scripts/Concretes/Controllers/PlayerController.cs"
 "Assets/GameFolders/Scripts/Concretes/Controllers/SpawnerController.cs"
 "Assets/GameFolders/Scripts/Concretes/Enums/EEnemy.cs"

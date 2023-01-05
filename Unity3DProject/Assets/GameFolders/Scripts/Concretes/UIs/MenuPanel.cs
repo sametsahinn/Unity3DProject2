@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class MenuPanel : MonoBehaviour
 {
-    public void StartClick()
+    public void SelectAndStartButton(int index)
     {
+        GameManager.Instance.DiffcultyIndex = index;
         GameManager.Instance.LoadLevelScene("Game");
     }
 

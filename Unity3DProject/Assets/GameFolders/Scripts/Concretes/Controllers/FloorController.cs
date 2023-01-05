@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorController : MonoBehaviour
 {
-    [Range(0.5f, 2)]
+    [Range(0.5f, 2.5f)]
     [SerializeField] float moveSpeed = 0.5f;
     Material material;
 

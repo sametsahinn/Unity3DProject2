@@ -5,9 +5,31 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SinglationThisObject<GameManager>
 {
+    [SerializeField] LevelDifficultyData[] levelDifficultyData;
+
     public event System.Action OnGameOver;
 
     public event System.Action OnMissionSucced;
+
+    int diffcultyIndex;
+    public int DiffcultyIndex 
+    {
+        get => diffcultyIndex;
+        set
+        {
+            if(diffcultyIndex < 0 || diffcultyIndex > levelDifficultyData.Length)
+            {
+                LoadMenuScene();
+            }
+            else
+            {
+                diffcultyIndex = value;
+            }
+        }
+    }
+
+    public LevelDifficultyData LevelDifficultyData => levelDifficultyData[DiffcultyIndex];
+
 
     private void Awake()
     {
