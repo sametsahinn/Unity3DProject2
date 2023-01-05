@@ -48,6 +48,9 @@ public class SpawnerController : MonoBehaviour
     {
 
         EnemyController newEnemy = EnemyManager.Instance.GetPool((EEnemy)Random.Range(0, index));
+
+        if (newEnemy == null) return;
+
         newEnemy.transform.parent = this.transform;
         newEnemy.transform.position = transform.transform.position;
         newEnemy.gameObject.SetActive(true);
