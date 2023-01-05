@@ -1587,6 +1587,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 309916253658088353, guid: 0fbfad69abd63e14899eba2e9b1e1fcd, type: 3}
+      propertyPath: addDelayTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 309916253658088353, guid: 0fbfad69abd63e14899eba2e9b1e1fcd, type: 3}
       propertyPath: enemyPreFabs
       value: 
       objectReference: {fileID: 9096324501465596994, guid: fa880cb7ff4a34541b80377191797c26, type: 3}
@@ -1710,26 +1714,6 @@ PrefabInstance:
     - target: {fileID: 849036637722170830, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1326988709155394462, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
-      propertyPath: min
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925091464016258180, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
-      propertyPath: min
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925091464176548732, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
-      propertyPath: min
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925091465234856733, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
-      propertyPath: min
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1925091465400542395, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
-      propertyPath: min
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2607399180630526071, guid: c70625553f9efca41a2c4a6aef93e83b, type: 3}
       propertyPath: m_Name

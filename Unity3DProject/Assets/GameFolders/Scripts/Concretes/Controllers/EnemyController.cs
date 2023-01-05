@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MyCharacterController, IEntityController
-{    
+{
     [SerializeField] float maxLifeTime = 7f;
+    [SerializeField] EEnemy enemyEnum;
 
     VerticalMover verticalMover;
     float currentTimeLife = 0f;
+
+    public EEnemy EnemyEnum => enemyEnum;
+
 
     private void Awake()
     {

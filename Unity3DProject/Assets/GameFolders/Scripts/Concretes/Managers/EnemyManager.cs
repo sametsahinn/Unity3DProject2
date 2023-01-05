@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class EnemyManager : SinglationThisObject<EnemyManager>
 {
+    [SerializeField] float addDelayTime = 50f;
+
     [SerializeField] EnemyController[] enemyPreFabs;
 
-    Queue<EnemyController> enemies = new Queue<EnemyController>();
+    Dictionary<EEnemy, Queue<EnemyController>> dicEnemies = new Dictionary<EEnemy, Queue<EnemyController>>();
+
+    public float AddDelayTime => addDelayTime;
+    public float Count => enemyPreFabs.Length;
+
 
     private void Awake()
     {
@@ -20,12 +26,19 @@ public class EnemyManager : SinglationThisObject<EnemyManager>
 
     private void InitiliazePool()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < enemyPreFabs.Length; i++)
         {
-            EnemyController newEnemy = Instantiate(enemyPreFabs[Random.Range(0, enemyPreFabs.Length)]);
-            newEnemy.gameObject.SetActive(false);
-            newEnemy.transform.parent = this.transform;
-            enemies.Enqueue(newEnemy);
+            Queue<EnemyController> enemies = new Queue<EnemyController>();
+
+            for (int j = 0; j < 10; j++)
+            {
+                EnemyController newEnemy = Instantiate(enemyPreFabs[i]);
+                newEnemy.gameObject.SetActive(false);
+                newEnemy.transform.parent = this.transform;
+                enemies.Enqueue(newEnemy);                
+            }
+
+            dicEnemies.Add((EEnemy)i, enemies);
         }
     }
 
@@ -33,16 +46,26 @@ public class EnemyManager : SinglationThisObject<EnemyManager>
     {
         enemyController.gameObject.SetActive(false);
         enemyController.transform.parent = this.transform;
-        enemies.Enqueue(enemyController);
+
+        Queue<EnemyController> enemy = dicEnemies[enemyController.EnemyEnum];
+        enemy.Enqueue(enemyController);
     }
 
-    public EnemyController GetPool()
+    public EnemyController GetPool(EEnemy enemyType)
     {
-        if (enemies.Count == 0)
+        Queue<EnemyController> enemy = dicEnemies[enemyType];
+
+        if (enemy.Count == 0)
         {
-            InitiliazePool();
+            // InitiliazePool();
+
+            for (int i = 0; i < 2; i++)
+            {
+                EnemyController newEnemy = Instantiate(enemyPreFabs[(int)enemyType]);
+                enemy.Enqueue(newEnemy);
+            }            
         }
 
-        return enemies.Dequeue();
+        return enemy.Dequeue();
     }
 }
